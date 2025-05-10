@@ -12,27 +12,27 @@
 <body class="home" id="home">
   <!-- NAVBAR -->
   <nav class="home__navbar" aria-label="Main navigation">
-  <div class="home__navbar-container">
-    <div class="home__navbar-left">
-      <a href="#home" class="home__logo-link">
-        <span class="home__logo-text">DevNest</span>
-      </a>
+    <div class="home__navbar-container">
+      <div class="home__navbar-left">
+        <a href="#home" class="home__logo-link nav-link">
+          <span class="home__logo-text">DevNest</span>
+        </a>
+      </div>
+      <div class="home__navbar-right">
+        <ul class="home__nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Team</a></li>
+          <li><a href="#projects" class="nav-link"> Programs</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="home__navbar-right">
-      <ul class="home__nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
 
   <!-- HERO -->
   <header class="home__hero">
     <div class="home__hero-content">
-      <h1>Build a Community<br />of Developers</h1>
+      <h1> The Community<br />of Developers</h1>
       <p>Our mission is to build a vibrant community of learners, developers, and change-makers by providing access to quality education, hands-on tech training, and career development resources.</p>
       <button class="home__btn">Join Community</button>
     </div>
@@ -44,22 +44,18 @@
       <img src="https://img.icons8.com/ios-filled/50/code.png" alt="Backend" loading="lazy" />
       <p>Backend Development</p>
     </div>
-
     <div class="home__topic">
       <img src="https://img.icons8.com/ios/100/cloud--v1.png" alt="Cloud graphic" loading="lazy" />
       <p>Cloud Computing</p>
     </div>
-
     <div class="home__topic">
       <img src="https://img.icons8.com/?size=100&id=120039&format=png&color=000000" alt="DSA" loading="lazy" />
       <p>Data Structures & Algorithms</p>
     </div>
-
     <div class="home__topic">
-  <img src="https://img.icons8.com/ios-filled/50/project-management.png" alt="Projects" loading="lazy" />
+      <img src="https://img.icons8.com/ios-filled/50/project-management.png" alt="Projects" loading="lazy" />
       <p>Projects and Hackathons</p>
     </div>
-    
   </section>
 
   <!-- TEAM -->
@@ -67,59 +63,51 @@
     <h2>Team Members</h2>
     <div class="home__team-grid">
       <div class="home__member">
-        <img src="https://placehold.co/100x100" alt="Backend Lead" loading="lazy" />
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Cloud/DevOps Lead" loading="lazy" />
         <h3>Cloud/DevOps Lead</h3>
         <p>Nevin Shine</p>
       </div>
       <div class="home__member">
-        <img src="https://placehold.co/100x100" alt="DevOps Lead" loading="lazy" />
+        <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Community Lead" loading="lazy" />
         <h3>Community Lead</h3>
         <p>Sanjo K Siby</p>
       </div>
       <div class="home__member">
-        <img src="https://placehold.co/100x100" alt="DSA Lead" loading="lazy" />
-        <h3> Event Manager</h3>
+        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Event Manager" loading="lazy" />
+        <h3>Event Manager</h3>
         <p>Thomas Peter</p>
       </div>
-      
       <div class="home__member">
-        <img src="https://placehold.co/100x100" alt="DSA Lead" loading="lazy" />
+        <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Design Lead" loading="lazy" />
         <h3>Design Lead</h3>
         <p>Thomas Peter</p>
       </div>
-
       <div class="home__member">
-        <img src="https://placehold.co/100x100" alt="DSA Lead" loading="lazy" />
+        <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Tech Lead" loading="lazy" />
         <h3>Tech Lead</h3>
         <p>Thomas Peter</p>
       </div>
-
     </div>
   </section>
 
-  <!-- PROJECTS -->
-
-  <!--  
-  
+  <!-- PROGRAM -->
   <section class="home__projects" id="projects">
-    <h2>Our Projects</h2>
+    <h2>Our Programs</h2>
     <div class="home__projects-grid">
       <div class="home__project">
-        <h3>Project One</h3>
+        <h3>Program One</h3>
         <p>A scalable backend API built with Node.js and Express.</p>
       </div>
       <div class="home__project">
-        <h3>Project Two</h3>
+        <h3>Program Two</h3>
         <p>Cloud infrastructure setup using AWS and Terraform.</p>
       </div>
       <div class="home__project">
-        <h3>Project Three</h3>
+        <h3>Program Three</h3>
         <p>Algorithm visualizer for learning DSA concepts.</p>
       </div>
     </div>
   </section>
-
-  -->
 
   <!-- CONTACT -->
   <section class="home__contact" id="contact">
@@ -130,6 +118,26 @@
       <textarea name="message" placeholder="Your Message" required></textarea>
       <button type="submit" class="home__btn">Send Message</button>
     </form>
+    <div class="home__social-icons">
+      <a href="https://linkedin.com" target="_blank" class="home__social-icon" aria-label="LinkedIn">
+        <img src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="LinkedIn" />
+      </a>
+      <a href="https://whatsapp.com" target="_blank" class="home__social-icon" aria-label="WhatsApp">
+        <img src="https://img.icons8.com/ios-filled/50/whatsapp.png" alt="WhatsApp" />
+      </a>
+      <a href="mailto:example@gmail.com" class="home__social-icon" aria-label="Gmail">
+        <img src="https://img.icons8.com/ios-filled/50/gmail.png" alt="Gmail" />
+      </a>
+      <a href="https://github.com" target="_blank" class="home__social-icon" aria-label="GitHub">
+        <img src="https://img.icons8.com/ios-filled/50/github.png" alt="GitHub" />
+      </a>
+      <a href="https://x.com" target="_blank" class="home__social-icon" aria-label="X">
+        <img src="https://img.icons8.com/ios-filled/50/twitter.png" alt="X" />
+      </a>
+      <a href="https://instagram.com" target="_blank" class="home__social-icon" aria-label="Instagram">
+        <img src="https://img.icons8.com/ios-filled/50/instagram-new.png" alt="Instagram" />
+      </a>
+    </div>
     <div class="toast" id="toast"></div>
   </section>
 

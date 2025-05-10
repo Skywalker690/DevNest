@@ -87,6 +87,11 @@ body.home {
   color: var(--secondary-color);
 }
 
+.home__nav-links a.active {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
 /* Hero Section */
 .home__hero {
   display: flex;
@@ -105,9 +110,9 @@ body.home {
 }
 
 .home__logo-text {
-  font-size: 1.5rem; /* Adjust size as needed */
+  font-size: 1.5rem;
   font-weight: bold;
-  color: white; /* Adjust color to match your design */
+  color: white;
   text-decoration: none;
   font-family: 'Your Preferred Font', sans-serif;
 }
@@ -299,6 +304,41 @@ body.home {
   resize: vertical;
 }
 
+/* Social Icons */
+.home__social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.home__social-icon {
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.home__social-icon img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+}
+
+.home__social-icon:hover {
+  transform: translateY(-5px);
+}
+
+.home__social-icon:hover img {
+  filter: 
+    brightness(0) 
+    saturate(100%) 
+    invert(42%) 
+    sepia(89%) 
+    saturate(1352%) 
+    hue-rotate(340deg) 
+    brightness(101%) 
+    contrast(105%);
+}
+
 /* Toast Notification */
 .toast {
   position: fixed;
@@ -335,11 +375,11 @@ body.home {
   }
 
   .home__nav-links {
-    display: none; /* Hide the nav links on mobile */
+    display: none;
   }
 
   .home__logo-img {
-    height: 35px; /* Slightly smaller logo on mobile */
+    height: 35px;
   }
 
   /* Hero Section */
@@ -425,6 +465,16 @@ body.home {
   .home__contact h2 {
     font-size: 1.8rem;
   }
+
+  .home__social-icons {
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .home__social-icon img {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 /* Small Mobile Devices */
@@ -448,7 +498,17 @@ body.home {
   }
 
   .home__logo-img {
-    height: 30px; /* Even smaller logo for very small screens */
+    height: 30px;
+  }
+
+  .home__social-icons {
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .home__social-icon img {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -469,5 +529,9 @@ body.home {
 
   .home__project {
     width: 220px;
+  }
+
+  .home__social-icons {
+    gap: 18px;
   }
 }

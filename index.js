@@ -15,9 +15,41 @@ document.addEventListener("DOMContentLoaded", function() {
           top: offsetPosition,
           behavior: "smooth"
         });
+
+        // Update active link
+        updateActiveLink(targetId);
       }
     });
   });
+
+  // Function to update active link
+  function updateActiveLink(targetId) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === targetId) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  // Intersection Observer for active link on scroll
+  const sections = document.querySelectorAll('section[id], body[id]');
+  const observerOptions = {
+    root: null,
+    threshold: 0.3,
+    rootMargin: '-80px 0px -80px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = `#${entry.target.id}`;
+        updateActiveLink(id);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
 
   // Form submission handling
   const contactForm = document.querySelector(".home__contact-form");
