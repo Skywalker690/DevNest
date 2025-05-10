@@ -8,26 +8,25 @@
   <title>Developer Community</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="home">
+<body class="home" id="home">
   <!-- NAVBAR -->
   <nav class="home__navbar" aria-label="Main navigation">
-    <div class="home__navbar-container">
-      <div class="home__navbar-left">
-        <div class="home__logo">DevNest</div>
-      </div>
-      <div class="home__navbar-right">
-        <button class="home__hamburger" id="hamburger" aria-expanded="false" aria-controls="navLinks">☰</button>
-        <ul class="home__nav-links" id="navLinks">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
+  <div class="home__navbar-container">
+    <div class="home__navbar-left">
+      <a href="#home" class="home__logo-link">
+        <span class="home__logo-text">DevNext</span>
+      </a>
     </div>
-  </nav>
-  <!-- MOBILE MENU OVERLAY -->
-  <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="home__navbar-right">
+      <ul class="home__nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
   <!-- HERO -->
   <header class="home__hero">
@@ -36,22 +35,18 @@
       <p>Our mission is to build a vibrant community of learners, developers, and change-makers by providing access to quality education, hands-on tech training, and career development resources.</p>
       <button class="home__btn">Join Community</button>
     </div>
-
   </header>
 
   <!-- TOPICS -->
   <section class="home__topics" id="about">
     <div class="home__topic">
-      <img src="https://img.icons8.com/ios-filled/50/code.png"  alt="Backend" loading="lazy" />
+      <img src="https://img.icons8.com/ios-filled/50/code.png" alt="Backend" loading="lazy" />
       <p>Backend Development</p>
     </div>
-
-
     <div class="home__topic">
       <img src="https://img.icons8.com/ios/100/cloud--v1.png" alt="Cloud graphic" loading="lazy" />
       <p>Cloud Computing</p>
     </div>
-
     <div class="home__topic">
       <img src="https://img.icons8.com/ios-filled/50/flow-chart.png" alt="DSA" loading="lazy" />
       <p>Data Structures & Algorithms</p>
