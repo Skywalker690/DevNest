@@ -424,9 +424,7 @@ body.home {
 /* Responsive Styles */
 @media (max-width: 768px) {
   /* Mobile Navbar */
-  .home__navbar-container {
-    padding: 15px;
-  }
+
 
   .home__nav-links {
     display: none;
