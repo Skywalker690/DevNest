@@ -3,7 +3,7 @@
   --primary-color: #0e1a2b;
   --secondary-color: #ff4b2b;
   --text-color: #fff;
-  --text-secondary: #e0e6ed; /* Lightened for better contrast */
+  --text-secondary: #e0e6ed;
   --text-dark: #000;
   --bg-light: #f5f7fa;
   --shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -470,7 +470,7 @@ body.home {
 .home__project-card:hover {
   transform: scale(1.1) translateY(-5px);
   z-index: 20;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1), 0 0 20px rgba(255, 75, 43, 0.5);
 }
 
 .home__project-card h3 {
@@ -562,6 +562,13 @@ body.home {
   text-align: left;
   font-size: 1rem;
   color: var(--text-color);
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.home__contact-form label:hover {
+  transform: translateY(-3px);
+  color: var(--secondary-color);
 }
 
 .home__contact-form input,
@@ -765,7 +772,7 @@ body.home {
     padding: 20px;
   }
   .home__member {
-    width: 220px;
+    width: 290px;
   }
   .home__project-card {
     width: 320px;
