@@ -11,22 +11,13 @@
   --transition: all 0.3s ease;
 }
 
-.home__topic img {
-  filter: 
-    brightness(0) 
-    saturate(100%) 
-    invert(42%) 
-    sepia(89%) 
-    saturate(1352%) 
-    hue-rotate(340deg) 
-    brightness(101%) 
-    contrast(105%);
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
 }
 
 html {
@@ -97,11 +88,6 @@ body.home {
   align-items: center;
 }
 
-.home__logo-img {
-  height: 40px;
-  width: auto;
-}
-
 .home__logo-text {
   font-size: 1.5rem;
   font-weight: bold;
@@ -139,7 +125,7 @@ body.home {
   align-items: center;
   padding: 100px 20px 60px;
   text-align: center;
-  max-width: 11200px;
+  max-width: 13500px;
   margin: 0 auto;
   background: linear-gradient(135deg, #0e1a2b, #3a1b1b);
   background-size: cover;
@@ -185,12 +171,15 @@ body.home {
   box-shadow: var(--shadow);
 }
 
-.home__hero-graphic img {
-  margin-top: 40px;
-  width: 120px;
-  height: auto;
-}
 
+
+
+
+
+
+
+
+/* Topics Section */
 /* Topics Section */
 .home__topics {
   background: var(--bg-light);
@@ -203,27 +192,93 @@ body.home {
 }
 
 .home__topic {
-  background-color: var(--primary-color);
-  color: white;
+  background: var(--primary-color);
+  color: var(--text-color);
   text-align: center;
   padding: 30px 20px;
   border-radius: var(--border-radius);
   width: 280px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 10px rgba(255, 75, 43, 0.3); /* Subtle neon glow */
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .home__topic:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px); /* Updated to -5px Y-axis translation */
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 0 20px var(--secondary-color), 0 0 30px rgba(255, 75, 43, 0.5);
 }
 
 .home__topic img {
   height: 50px;
   margin-bottom: 15px;
+  filter: 
+    brightness(0) 
+    saturate(100%) 
+    invert(100%) 
+    sepia(0%) 
+    saturate(0%) 
+    hue-rotate(0deg) 
+    brightness(100%) 
+    contrast(100%); /* White icons */
+  transition: var(--transition);
+}
+
+.home__topic:hover img {
+  filter: 
+    brightness(0) 
+    saturate(100%) 
+    invert(42%) 
+    sepia(89%) 
+    saturate(1352%) 
+    hue-rotate(340deg) 
+    brightness(101%) 
+    contrast(105%); /* Neon accent */
 }
 
 .home__topic p {
   font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-color);
 }
+
+/* Animated gradient background on hover */
+.home__topic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 75, 43, 0.2), transparent);
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.home__topic:hover::before {
+  left: 100%;
+}
+
+/* Ensure content stays above overlay */
+.home__topic > * {
+  position: relative;
+  z-index: 1;
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+  .home__topic {
+    background: rgba(14, 26, 43, 0.8); /* Fallback solid color */
+  }
+}
+
+
+
+
+
+
+
 
 /* Team Section */
 .home__team {
@@ -285,7 +340,7 @@ body.home {
 
 .home__projects h2 {
   font-size: 2rem;
-  margin-bottom: 50px;
+  
 }
 
 .home__projects-container {
@@ -300,12 +355,12 @@ body.home {
   scroll-snap-type: x mandatory;
   gap: 30px;
   padding-bottom: 20px;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .home__projects-scroll::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari */
+  display: none;
 }
 
 .home__project-card {
@@ -319,10 +374,14 @@ body.home {
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin-top: 70px;
 }
 
 .home__project-card:hover {
-  transform: translateY(-10px);
+  transform: scale(1.1) translateY(-5px);
+  z-index: 20;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* Shifted downward to remove top shadow */
 }
 
 .home__project-card h3 {
@@ -333,7 +392,7 @@ body.home {
 
 .home__project-content {
   flex-grow: 1;
-  min-height: 150px; /* Fixed height for consistent content area */
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -440,6 +499,61 @@ body.home {
     contrast(105%);
 }
 
+/* Projects Scroll Section */
+.home__projects-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 30px;
+  padding-bottom: 20px;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Custom Scrollbar for All Scrollable Areas */
+::-webkit-scrollbar {
+  width: 10px; /* Vertical scrollbar width */
+  height: 10px; /* Horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4b2b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d63d21;
+}
+
+/* Standard Scrollbar Styles for Firefox and Modern Browsers */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff4b2b #f1f1f1;
+}
+
+/* Hide Scrollbar When at Top */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Ensure Projects Scroll Uses Custom Scrollbar */
+.home__projects-scroll::-webkit-scrollbar {
+  display: block; /* Ensure visibility when not hidden */
+}
+
+.home__projects-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ff4b2b #f1f1f1; /* Firefox */
+}
+
 /* Toast Notification */
 .toast {
   position: fixed;
@@ -474,16 +588,10 @@ body.home {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  /* Mobile Navbar */
   .home__nav-links {
     display: none;
   }
 
-  .home__logo-img {
-    height: 35px;
-  }
-
-  /* Hero Section */
   .home__hero {
     padding: 80px 20px 40px;
     flex-direction: column-reverse;
@@ -503,11 +611,6 @@ body.home {
     font-size: 1rem;
   }
 
-  .home__hero-graphic img {
-    width: 80px;
-  }
-
-  /* Topics Section */
   .home__topics {
     flex-direction: column;
     align-items: center;
@@ -521,7 +624,6 @@ body.home {
     padding: 25px;
   }
 
-  /* Team Section */
   .home__team {
     padding: 60px 20px;
   }
@@ -540,18 +642,23 @@ body.home {
     max-width: 300px;
   }
 
-  /* Projects Section */
   .home__projects {
     padding: 60px 20px;
   }
 
   .home__projects h2 {
     font-size: 1.8rem;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
 
   .home__project-card {
     width: 300px;
+  }
+
+  .home__project-card:hover {
+    transform: scale(1.1) translateY(-5px);
+    z-index: 20;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
   }
 
   .home__project-buttons {
@@ -560,11 +667,10 @@ body.home {
   }
 
   .home__project-content {
-    min-height: 180px; /* Adjusted for mobile */
+    min-height: 180px;
   }
 }
 
-/* Small Mobile Devices */
 @media (max-width: 480px) {
   .home__hero-content h1 {
     font-size: 1.8rem;
@@ -584,10 +690,6 @@ body.home {
     height: 80px;
   }
 
-  .home__logo-img {
-    height: 30px;
-  }
-
   .home__social-icons {
     gap: 10px;
     margin-top: 15px;
@@ -603,7 +705,6 @@ body.home {
   }
 }
 
-/* Tablet Devices */
 @media (min-width: 769px) and (max-width: 1024px) {
   .home__hero {
     padding: 90px 40px 50px;
@@ -628,12 +729,6 @@ body.home {
   }
 }
 
-* {
-  -webkit-user-drag: none;
-  user-drag: none;
-  user-select: none;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -650,6 +745,86 @@ body.home {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d63d21; /* Slightly darker on hover */
+  background: #d63d21;
 }
 
+/* Styling for h2 headings in Projects, Team, and Contact sections */
+.home__projects h2,
+.home__team h2,
+.home__contact h2 {
+  font-size: 2rem;
+  margin-bottom: 40px; /* Adjust as needed */
+  position: relative; /* For positioning the underline */
+  display: inline-block; /* Ensures the underline respects the text width */
+  transition: transform 0.3s ease; /* Smooth scaling animation */
+}
+
+/* Pseudo-element for the underline */
+.home__projects h2::after,
+.home__team h2::after,
+.home__contact h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust distance below text */
+  left: 50%; /* Start from center */
+  width: 0; /* Initial width of underline */
+  height: 3px; /* Thickness of underline */
+  background-color: var(--secondary-color); /* Orange color (#ff4b2b) */
+  transition: width 0.3s ease, left 0.3s ease; /* Smooth width and position transition */
+  transform-origin: center; /* Ensures scaling from center */
+}
+
+/* Hover effect */
+.home__projects h2:hover,
+.home__team h2:hover,
+.home__contact h2:hover {
+  transform: scale(1.05); /* Slight upscale (5%) */
+}
+
+/* Expand underline on hover */
+.home__projects h2:hover::after,
+.home__team h2:hover::after,
+.home__contact h2:hover::after {
+  width: 100%; /* Full width of the text */
+  left: 0; /* Move to start of text */
+}
+
+/* Styling for DevNest logo text */
+.home__logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative; /* For positioning the underline */
+  display: inline-block; /* Ensures underline respects text width */
+  transition: transform 0.3s ease; /* Smooth scaling animation */
+}
+
+/* Pseudo-element for the underline */
+.home__logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Distance below text */
+  left: 50%; /* Start from center */
+  width: 0; /* Initial width of underline */
+  height: 3px; /* Thickness of underline */
+  background-color: var(--secondary-color); /* Orange color (#ff4b2b) */
+  transition: width 0.3s ease, left 0.3s ease; /* Smooth width and position transition */
+  transform-origin: center; /* Ensures scaling from center */
+}
+
+/* Hover effect */
+.home__logo-text:hover {
+  transform: scale(1.05); /* Slight upscale (5%) */
+}
+
+/* Expand underline on hover */
+.home__logo-text:hover::after {
+  width: 100%; /* Full width of the text */
+  left: 0; /* Move to start of text */
+}
+
+.bug{
+  margin-top: -5px;
+}
