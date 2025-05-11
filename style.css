@@ -3,7 +3,7 @@
   --primary-color: #0e1a2b;
   --secondary-color: #ff4b2b;
   --text-color: #fff;
-  --text-secondary: #cfd8e0;
+  --text-secondary: #e0e6ed; /* Lightened for better contrast */
   --text-dark: #000;
   --bg-light: #f5f7fa;
   --shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -25,7 +25,7 @@ html {
 }
 
 body.home {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--primary-color);
   color: var(--text-color);
   line-height: 1.6;
@@ -43,10 +43,12 @@ body.home {
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  transition: opacity 0.3s ease;
 }
 
 .preloader.hidden {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .spinner {
@@ -71,6 +73,11 @@ body.home {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.home__navbar.sticky {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .home__navbar-container {
@@ -94,6 +101,38 @@ body.home {
   color: white;
   text-decoration: none;
   font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.home__logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.home__logo-text:hover {
+  transform: scale(1.05);
+}
+
+.home__logo-text:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.home__menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .home__nav-links {
@@ -109,7 +148,8 @@ body.home {
   transition: var(--transition);
 }
 
-.home__nav-links a:hover {
+.home__nav-links a:hover,
+.home__nav-links a:focus {
   color: var(--secondary-color);
 }
 
@@ -125,7 +165,7 @@ body.home {
   align-items: center;
   padding: 100px 20px 60px;
   text-align: center;
-  max-width: 13500px;
+  max-width: 12500px;
   margin: 0 auto;
   background: linear-gradient(135deg, #0e1a2b, #3a1b1b);
   background-size: cover;
@@ -166,20 +206,32 @@ body.home {
   font-weight: 600;
 }
 
-.home__btn:hover {
+.home__btn:hover,
+.home__btn:focus {
   transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
 
+.home__btn--loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
 
+.home__btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-
-
-
-
-
-
-/* Topics Section */
 /* Topics Section */
 .home__topics {
   background: var(--bg-light);
@@ -199,14 +251,14 @@ body.home {
   border-radius: var(--border-radius);
   width: 280px;
   border: 2px solid transparent;
-  box-shadow: 0 0 10px rgba(255, 75, 43, 0.3); /* Subtle neon glow */
+  box-shadow: 0 0 10px rgba(255, 75, 43, 0.3);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
 }
 
 .home__topic:hover {
-  transform: translateY(-5px); /* Updated to -5px Y-axis translation */
+  transform: translateY(-5px);
   border: 2px solid var(--secondary-color);
   box-shadow: 0 0 20px var(--secondary-color), 0 0 30px rgba(255, 75, 43, 0.5);
 }
@@ -214,28 +266,12 @@ body.home {
 .home__topic img {
   height: 50px;
   margin-bottom: 15px;
-  filter: 
-    brightness(0) 
-    saturate(100%) 
-    invert(100%) 
-    sepia(0%) 
-    saturate(0%) 
-    hue-rotate(0deg) 
-    brightness(100%) 
-    contrast(100%); /* White icons */
+  filter: brightness(0) invert(1);
   transition: var(--transition);
 }
 
 .home__topic:hover img {
-  filter: 
-    brightness(0) 
-    saturate(100%) 
-    invert(42%) 
-    sepia(89%) 
-    saturate(1352%) 
-    hue-rotate(340deg) 
-    brightness(101%) 
-    contrast(105%); /* Neon accent */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(89%) saturate(1352%) hue-rotate(340deg) brightness(101%) contrast(105%);
 }
 
 .home__topic p {
@@ -244,7 +280,6 @@ body.home {
   color: var(--text-color);
 }
 
-/* Animated gradient background on hover */
 .home__topic::before {
   content: '';
   position: absolute;
@@ -261,7 +296,6 @@ body.home {
   left: 100%;
 }
 
-/* Ensure content stays above overlay */
 .home__topic > * {
   position: relative;
   z-index: 1;
@@ -269,16 +303,9 @@ body.home {
 
 @supports not (backdrop-filter: blur(10px)) {
   .home__topic {
-    background: rgba(14, 26, 43, 0.8); /* Fallback solid color */
+    background: rgba(14, 26, 43, 0.8);
   }
 }
-
-
-
-
-
-
-
 
 /* Team Section */
 .home__team {
@@ -290,7 +317,30 @@ body.home {
 
 .home__team h2 {
   font-size: 2rem;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.home__team h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.home__team h2:hover {
+  transform: scale(1.05);
+}
+
+.home__team h2:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .home__team-grid {
@@ -340,7 +390,30 @@ body.home {
 
 .home__projects h2 {
   font-size: 2rem;
-  
+  margin-bottom: 60px;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.home__projects h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.home__projects h2:hover {
+  transform: scale(1.05);
+}
+
+.home__projects h2:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .home__projects-container {
@@ -355,12 +428,28 @@ body.home {
   scroll-snap-type: x mandatory;
   gap: 30px;
   padding-bottom: 20px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: #ff4b2b #f1f1f1;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .home__projects-scroll::-webkit-scrollbar {
-  display: none;
+  height: 10px;
+}
+
+.home__projects-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.home__projects-scroll::-webkit-scrollbar-thumb {
+  background: #ff4b2b;
+  border-radius: 10px;
+}
+
+.home__projects-scroll::-webkit-scrollbar-thumb:hover {
+  background: #d63d21;
 }
 
 .home__project-card {
@@ -371,7 +460,7 @@ body.home {
   flex: 0 0 auto;
   box-shadow: var(--shadow);
   scroll-snap-align: start;
-  transition: var(--transition);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -381,7 +470,7 @@ body.home {
 .home__project-card:hover {
   transform: scale(1.1) translateY(-5px);
   z-index: 20;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* Shifted downward to remove top shadow */
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
 }
 
 .home__project-card h3 {
@@ -421,7 +510,8 @@ body.home {
   border: 2px solid var(--primary-color);
 }
 
-.home__btn--secondary:hover {
+.home__btn--secondary:hover,
+.home__btn--secondary:focus {
   background-color: var(--primary-color);
   color: white;
 }
@@ -436,13 +526,42 @@ body.home {
 
 .home__contact h2 {
   font-size: 2rem;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.home__contact h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.home__contact h2:hover {
+  transform: scale(1.05);
+}
+
+.home__contact h2:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .home__contact-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.home__contact-form label {
+  text-align: left;
+  font-size: 1rem;
+  color: var(--text-color);
 }
 
 .home__contact-form input,
@@ -483,75 +602,14 @@ body.home {
   filter: brightness(0) invert(1);
 }
 
-.home__social-icon:hover {
+.home__social-icon:hover,
+.home__social-icon:focus {
   transform: translateY(-5px);
 }
 
-.home__social-icon:hover img {
-  filter: 
-    brightness(0) 
-    saturate(100%) 
-    invert(42%) 
-    sepia(89%) 
-    saturate(1352%) 
-    hue-rotate(340deg) 
-    brightness(101%) 
-    contrast(105%);
-}
-
-/* Projects Scroll Section */
-.home__projects-scroll {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 30px;
-  padding-bottom: 20px;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-
-/* Custom Scrollbar for All Scrollable Areas */
-::-webkit-scrollbar {
-  width: 10px; /* Vertical scrollbar width */
-  height: 10px; /* Horizontal scrollbar height */
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ff4b2b;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #d63d21;
-}
-
-/* Standard Scrollbar Styles for Firefox and Modern Browsers */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ff4b2b #f1f1f1;
-}
-
-/* Hide Scrollbar When at Top */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.hide-scrollbar {
-  scrollbar-width: none; /* Firefox */
-}
-
-/* Ensure Projects Scroll Uses Custom Scrollbar */
-.home__projects-scroll::-webkit-scrollbar {
-  display: block; /* Ensure visibility when not hidden */
-}
-
-.home__projects-scroll {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #ff4b2b #f1f1f1; /* Firefox */
+.home__social-icon:hover img,
+.home__social-icon:focus img {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(89%) saturate(1352%) hue-rotate(340deg) brightness(101%) contrast(105%);
 }
 
 /* Toast Notification */
@@ -588,84 +646,74 @@ body.home {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .home__menu-toggle {
+    display: block;
+  }
   .home__nav-links {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: var(--primary-color);
+    padding: 20px;
   }
-
+  .home__nav-links.show {
+    display: flex;
+  }
   .home__hero {
     padding: 80px 20px 40px;
     flex-direction: column-reverse;
     min-height: 400px;
   }
-
   .home__hero-content {
     margin-top: 30px;
   }
-
   .home__hero-content h1 {
     font-size: 2rem;
     line-height: 1.3;
   }
-
   .home__hero-content p {
     font-size: 1rem;
   }
-
   .home__topics {
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
     gap: 20px;
   }
-
   .home__topic {
     width: 100%;
     max-width: 300px;
     padding: 25px;
   }
-
   .home__team {
     padding: 60px 20px;
   }
-
   .home__team h2 {
     font-size: 1.8rem;
-    margin-bottom: 30px;
   }
-
   .home__team-grid {
     gap: 30px;
   }
-
   .home__member {
     width: 100%;
     max-width: 300px;
   }
-
   .home__projects {
     padding: 60px 20px;
   }
-
   .home__projects h2 {
     font-size: 1.8rem;
-    margin-bottom: 50px;
   }
-
   .home__project-card {
     width: 300px;
   }
-
-  .home__project-card:hover {
-    transform: scale(1.1) translateY(-5px);
-    z-index: 20;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  }
-
   .home__project-buttons {
     flex-direction: column;
     gap: 10px;
   }
-
   .home__project-content {
     min-height: 180px;
   }
@@ -675,55 +723,53 @@ body.home {
   .home__hero-content h1 {
     font-size: 1.8rem;
   }
-
   .home__hero-content p {
     font-size: 0.95rem;
   }
-
   .home__btn {
     padding: 10px 20px;
     font-size: 0.9rem;
   }
-
   .home__member img {
     width: 80px;
     height: 80px;
   }
-
   .home__social-icons {
     gap: 10px;
     margin-top: 15px;
   }
-
   .home__social-icon img {
     width: 30px;
     height: 30px;
   }
-
   .home__project-card {
     width: 280px;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) {
+  .home__hero-content h1 {
+    font-size: 3rem;
+  }
+  .home__projects h2,
+  .home__team h2,
+  .home__contact h2 {
+    font-size: 2.5rem;
+  }
   .home__hero {
     padding: 90px 40px 50px;
     min-height: 450px;
   }
-
   .home__topic {
-    width: 220px;
+    width: 320px;
     padding: 20px;
   }
-
   .home__member {
     width: 220px;
   }
-
   .home__project-card {
     width: 320px;
   }
-
   .home__social-icons {
     gap: 18px;
   }
@@ -732,6 +778,7 @@ body.home {
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -748,83 +795,6 @@ body.home {
   background: #d63d21;
 }
 
-/* Styling for h2 headings in Projects, Team, and Contact sections */
-.home__projects h2,
-.home__team h2,
-.home__contact h2 {
-  font-size: 2rem;
-  margin-bottom: 40px; /* Adjust as needed */
-  position: relative; /* For positioning the underline */
-  display: inline-block; /* Ensures the underline respects the text width */
-  transition: transform 0.3s ease; /* Smooth scaling animation */
-}
-
-/* Pseudo-element for the underline */
-.home__projects h2::after,
-.home__team h2::after,
-.home__contact h2::after {
-  content: '';
-  position: absolute;
-  bottom: -5px; /* Adjust distance below text */
-  left: 50%; /* Start from center */
-  width: 0; /* Initial width of underline */
-  height: 3px; /* Thickness of underline */
-  background-color: var(--secondary-color); /* Orange color (#ff4b2b) */
-  transition: width 0.3s ease, left 0.3s ease; /* Smooth width and position transition */
-  transform-origin: center; /* Ensures scaling from center */
-}
-
-/* Hover effect */
-.home__projects h2:hover,
-.home__team h2:hover,
-.home__contact h2:hover {
-  transform: scale(1.05); /* Slight upscale (5%) */
-}
-
-/* Expand underline on hover */
-.home__projects h2:hover::after,
-.home__team h2:hover::after,
-.home__contact h2:hover::after {
-  width: 100%; /* Full width of the text */
-  left: 0; /* Move to start of text */
-}
-
-/* Styling for DevNest logo text */
-.home__logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  font-family: 'Segoe UI', sans-serif;
-  position: relative; /* For positioning the underline */
-  display: inline-block; /* Ensures underline respects text width */
-  transition: transform 0.3s ease; /* Smooth scaling animation */
-}
-
-/* Pseudo-element for the underline */
-.home__logo-text::after {
-  content: '';
-  position: absolute;
-  bottom: -5px; /* Distance below text */
-  left: 50%; /* Start from center */
-  width: 0; /* Initial width of underline */
-  height: 3px; /* Thickness of underline */
-  background-color: var(--secondary-color); /* Orange color (#ff4b2b) */
-  transition: width 0.3s ease, left 0.3s ease; /* Smooth width and position transition */
-  transform-origin: center; /* Ensures scaling from center */
-}
-
-/* Hover effect */
-.home__logo-text:hover {
-  transform: scale(1.05); /* Slight upscale (5%) */
-}
-
-/* Expand underline on hover */
-.home__logo-text:hover::after {
-  width: 100%; /* Full width of the text */
-  left: 0; /* Move to start of text */
-}
-
-.bug{
+.bug {
   margin-top: -5px;
 }
