@@ -43,7 +43,7 @@
         <ul class="home__nav-links" id="navLinks">
           <li><a href="#home" class="nav-link">About</a></li>
           <li><a href="#experience" class="nav-link">Team</a></li>
-          <li><a href="#projects" class="nav-link"> Programs</a></li>
+          <li><a href="#projects" class="nav-link">Programs</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </div>
@@ -53,7 +53,7 @@
   <!-- HERO -->
   <header class="home__hero">
     <div class="home__hero-content">
-      <h1> The Community<br />of Developers</h1>
+      <h1>The Community<br />of Developers</h1>
       <p>Our mission is to build a vibrant community of learners, developers, and change-makers by providing access to quality education, hands-on tech training, and career development resources.</p>
       <button class="home__btn">Join Community</button>
     </div>
@@ -114,18 +114,120 @@
   <!-- PROGRAM -->
   <section class="home__projects" id="projects">
     <h2>Our Programs</h2>
-    <div class="home__projects-grid">
-      <div class="home__project">
-        <h3>Program One</h3>
-        <p>A scalable backend API built with Node.js and Express.</p>
-      </div>
-      <div class="home__project">
-        <h3>Program Two</h3>
-        <p>Cloud infrastructure setup using AWS and Terraform.</p>
-      </div>
-      <div class="home__project">
-        <h3>Program Three</h3>
-        <p>Algorithm visualizer for learning DSA concepts.</p>
+    <div class="home__projects-container">
+      <div class="home__projects-scroll">
+        <!-- Original Set of Cards -->
+        <div class="home__project-card">
+          <h3>Backend Bootcamp</h3>
+          <div class="home__project-content">
+            <p>Join our Backend Bootcamp to master server-side development. Learn Node.js, Express, and database management through hands-on projects.</p>
+            <p>This program is designed for beginners and intermediate developers looking to build scalable APIs and understand server architecture.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>Cloud Mastery</h3>
+          <div class="home__project-content">
+            <p>Dive into cloud computing with our Cloud Mastery program. Explore AWS, Terraform, and cloud architecture best practices.</p>
+            <p>Perfect for those aiming to deploy and manage applications in the cloud with efficiency and security.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>DSA Deep Dive</h3>
+          <div class="home__project-content">
+            <p>Enhance your problem-solving skills with our DSA Deep Dive. Master data structures and algorithms through interactive challenges.</p>
+            <p>Ideal for preparing for technical interviews or competitive programming.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>Hackathon Hub</h3>
+          <div class="home__project-content">
+            <p>Join our Hackathon Hub to collaborate on innovative projects. Work in teams to solve real-world problems and showcase your skills.</p>
+            <p>A great opportunity to network and gain practical experience.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>API Workshop</h3>
+          <div class="home__project-content">
+            <p>Learn to build and deploy RESTful APIs in our API Workshop. Focus on best practices, security, and performance optimization.</p>
+            <p>Suitable for developers aiming to create robust backend services.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <!-- Duplicated Set of Cards for Infinite Loop -->
+        <div class="home__project-card">
+          <h3>Backend Bootcamp</h3>
+          <div class="home__project-content">
+            <p>Join our Backend Bootcamp to master server-side development. Learn Node.js, Express, and database management through hands-on projects.</p>
+            <p>This program is designed for beginners and intermediate developers looking to build scalable APIs and understand server architecture.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>Cloud Mastery</h3>
+          <div class="home__project-content">
+            <p>Dive into cloud computing with our Cloud Mastery program. Explore AWS, Terraform, and cloud architecture best practices.</p>
+            <p>Perfect for those aiming to deploy and manage applications in the cloud with efficiency and security.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>DSA Deep Dive</h3>
+          <div class="home__project-content">
+            <p>Enhance your problem-solving skills with our DSA Deep Dive. Master data structures and algorithms through interactive challenges.</p>
+            <p>Ideal for preparing for technical interviews or competitive programming.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>Hackathon Hub</h3>
+          <div class="home__project-content">
+            <p>Join our Hackathon Hub to collaborate on innovative projects. Work in teams to solve real-world problems and showcase your skills.</p>
+            <p>A great opportunity to network and gain practical experience.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
+        <div class="home__project-card">
+          <h3>API Workshop</h3>
+          <div class="home__project-content">
+            <p>Learn to build and deploy RESTful APIs in our API Workshop. Focus on best practices, security, and performance optimization.</p>
+            <p>Suitable for developers aiming to create robust backend services.</p>
+          </div>
+          <div class="home__project-buttons">
+            <button class="home__btn home__btn--primary">Learn More</button>
+            <button class="home__btn home__btn--secondary">Join Now</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>

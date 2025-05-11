@@ -121,4 +121,79 @@ document.addEventListener("DOMContentLoaded", function() {
       }, 3000);
     }
   }
-}); 
+
+  // Infinite Scroll and Mouse Drag for Projects Section
+  const scrollContainer = document.querySelector('.home__projects-scroll');
+  if (scrollContainer) {
+    const cardCount = 5; // Number of unique cards
+    const cardWidth = 360 + 30; // Card width + gap (360px + 30px gap)
+    const totalCardsWidth = cardWidth * cardCount;
+
+    // Auto-scroll functionality
+    let scrollSpeed = 1;
+    let isPaused = false;
+
+    function autoScroll() {
+      if (isPaused) return;
+      scrollContainer.scrollLeft += scrollSpeed;
+      // Reset scroll position for infinite loop
+      if (scrollContainer.scrollLeft >= totalCardsWidth) {
+        scrollContainer.scrollLeft = 0;
+      } else if (scrollContainer.scrollLeft <= 0) {
+        scrollContainer.scrollLeft = totalCardsWidth;
+      }
+      requestAnimationFrame(autoScroll);
+    }
+
+    // Start auto-scrolling
+    requestAnimationFrame(autoScroll);
+
+    // Pause on hover
+    scrollContainer.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+    scrollContainer.addEventListener('mouseleave', () => {
+      isPaused = false;
+      requestAnimationFrame(autoScroll);
+    });
+
+    // Mouse drag functionality
+    let isDragging = false;
+    let startX;
+    let scrollLeftStart;
+
+    scrollContainer.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX - scrollContainer.offsetLeft;
+      scrollLeftStart = scrollContainer.scrollLeft;
+      scrollContainer.style.cursor = 'grabbing';
+    });
+
+    scrollContainer.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX) * 2; // Adjust drag speed
+      scrollContainer.scrollLeft = scrollLeftStart - walk;
+    });
+
+    scrollContainer.addEventListener('mouseup', () => {
+      isDragging = false;
+      scrollContainer.style.cursor = 'grab';
+    });
+
+    scrollContainer.addEventListener('mouseleave', () => {
+      isDragging = false;
+      scrollContainer.style.cursor = 'grab';
+    });
+
+    // Ensure smooth looping on manual scroll
+    scrollContainer.addEventListener('scroll', () => {
+      if (scrollContainer.scrollLeft >= totalCardsWidth) {
+        scrollContainer.scrollLeft = 0;
+      } else if (scrollContainer.scrollLeft <= 0) {
+        scrollContainer.scrollLeft = totalCardsWidth;
+      }
+    });
+  }
+});
