@@ -10,6 +10,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="home" id="home">
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Inline Script to Hide Preloader -->
+  <script>
+    console.log('Inline script: Attempting to hide preloader');
+    try {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.classList.add('hidden');
+        console.log('Inline script: Preloader hidden');
+      } else {
+        console.error('Inline script: Preloader element not found');
+      }
+    } catch (error) {
+      console.error('Inline script: Error hiding preloader:', error);
+    }
+  </script>
+
   <!-- NAVBAR -->
   <nav class="home__navbar" aria-label="Main navigation">
     <div class="home__navbar-container">

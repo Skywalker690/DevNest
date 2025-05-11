@@ -51,9 +51,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
   sections.forEach(section => observer.observe(section));
 
-  // Form submission handling
+  // Form submission and real-time validation
   const contactForm = document.querySelector(".home__contact-form");
   const toast = document.getElementById("toast");
+  const inputs = contactForm.querySelectorAll('input, textarea');
+
+  // Real-time validation
+  inputs.forEach(input => {
+    input.addEventListener('input', function() {
+      if (input.name === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.value)) {
+          input.classList.add('invalid');
+        } else {
+          input.classList.remove('invalid');
+        }
+      } else if (input.value.trim() === '') {
+        input.classList.add('invalid');
+      } else {
+        input.classList.remove('invalid');
+      }
+    });
+  });
 
   if (contactForm && toast) {
     contactForm.addEventListener("submit", function(e) {
@@ -62,10 +81,23 @@ document.addEventListener("DOMContentLoaded", function() {
       const formData = new FormData(this);
       const formValues = Object.fromEntries(formData.entries());
 
-      // Basic email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formValues.email)) {
-        showToast("Please enter a valid email address.", "error");
+      // Validate all fields
+      let isValid = true;
+      inputs.forEach(input => {
+        if (input.name === 'email') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(formValues.email)) {
+            input.classList.add('invalid');
+            isValid = false;
+          }
+        } else if (!formValues[input.name].trim()) {
+          input.classList.add('invalid');
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        showToast("Please fill all fields correctly.", "error");
         return;
       }
 
@@ -75,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // Show success message
       showToast("Thank you for your message! We'll get back to you soon.", "success");
       this.reset();
+      inputs.forEach(input => input.classList.remove('invalid'));
     });
   }
 
@@ -88,4 +121,4 @@ document.addEventListener("DOMContentLoaded", function() {
       }, 3000);
     }
   }
-});
+}); 
