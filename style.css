@@ -209,8 +209,9 @@ body.home {
 .home__btn:hover,
 .home__btn:focus {
   transform: translateY(-3px);
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 25px rgba(255, 75, 43, 0.6); /* #ff4b2b shadow */
 }
+
 
 .home__btn--loading {
   position: relative;
