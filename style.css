@@ -1,4 +1,5 @@
-/* Global reset and base styles */
+
+
 :root {
   --primary-color: #0e1a2b;
   --secondary-color: #ff4b2b;
@@ -468,6 +469,8 @@ body.home {
   margin-top: 70px;
 }
 
+
+
 .home__project-card:hover {
   transform: scale(1.1) translateY(-5px);
   z-index: 20;
@@ -654,8 +657,11 @@ body.home {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .home__menu-toggle {
-    display: block;
+
+  .home__project-card:hover {
+  transform: translateY(-5px);
+  z-index: 20;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1), 0 0 20px rgba(255, 75, 43, 0.5);
   }
   .home__nav-links {
     display: none;
@@ -718,6 +724,10 @@ body.home {
   .home__project-card {
     width: 300px;
   }
+
+  .marginfix{
+  margin-left: 1500px;
+}
   .home__project-buttons {
     flex-direction: column;
     gap: 10px;
@@ -727,61 +737,7 @@ body.home {
   }
 }
 
-@media (max-width: 480px) {
-  .home__hero-content h1 {
-    font-size: 1.8rem;
-  }
-  .home__hero-content p {
-    font-size: 0.95rem;
-  }
-  .home__btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
-  .home__member img {
-    width: 80px;
-    height: 80px;
-  }
-  .home__social-icons {
-    gap: 10px;
-    margin-top: 15px;
-  }
-  .home__social-icon img {
-    width: 30px;
-    height: 30px;
-  }
-  .home__project-card {
-    width: 280px;
-  }
-}
 
-@media (min-width: 769px) {
-  .home__hero-content h1 {
-    font-size: 3rem;
-  }
-  .home__projects h2,
-  .home__team h2,
-  .home__contact h2 {
-    font-size: 2.5rem;
-  }
-  .home__hero {
-    padding: 90px 40px 50px;
-    min-height: 450px;
-  }
-  .home__topic {
-    width: 320px;
-    padding: 20px;
-  }
-  .home__member {
-    width: 290px;
-  }
-  .home__project-card {
-    width: 320px;
-  }
-  .home__social-icons {
-    gap: 18px;
-  }
-}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

@@ -3,20 +3,12 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     preloader.classList.add('hidden');
-    setTimeout(() => preloader.style.display = 'none', 300);
+    setTimeout(() => preloader.style.display = 'none', 3000);
   });
 
   // Dynamic footer year
   document.getElementById('current-year').textContent = new Date().getFullYear();
 
-  // Hamburger menu toggle
-  const menuToggle = document.querySelector('.home__menu-toggle');
-  const navLinks = document.querySelector('.home__nav-links');
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  }
 
   // Sticky navbar
   window.addEventListener('scroll', () => {
@@ -47,15 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Function to update active link
-  function updateActiveLink(targetId) {
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === targetId) {
-        link.classList.add('active');
-      }
-    });
-  }
 
   // Intersection Observer for active link on scroll
   const sections = document.querySelectorAll('section[id], body[id]');
@@ -163,15 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Infinite Scroll and Mouse Drag for Projects Section
-  const scrollContainer = document.querySelector('.home__projects-scroll');
-  if (scrollContainer) {
-    const cards = scrollContainer.querySelectorAll('.home__project-card');
-    // Duplicate cards for smooth infinite scroll
-    cards.forEach(card => {
-      const clone = card.cloneNode(true);
-      scrollContainer.appendChild(clone);
-    });
+
 
     const cardCount = cards.length;
     const cardWidth = 360 + 30; // Card width + gap
@@ -234,13 +209,6 @@ document.addEventListener("DOMContentLoaded", function() {
       scrollContainer.style.cursor = 'grab';
     });
 
-    // Smooth looping on manual scroll
-    scrollContainer.addEventListener('scroll', () => {
-      if (scrollContainer.scrollLeft >= totalCardsWidth) {
-        scrollContainer.scrollLeft -= totalCardsWidth;
-      } else if (scrollContainer.scrollLeft <= 0) {
-        scrollContainer.scrollLeft += totalCardsWidth;
-      }
-    });
+
   }
 });
