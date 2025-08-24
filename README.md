@@ -35,7 +35,7 @@
 ### **Clone the Repository**
 
 ```bash
-git clone https://github.com/skywalker690/devnest.git
+git clone https://github.com/skywalker690/DevNest.git
 ```
 
 ### **Open in Browser**
